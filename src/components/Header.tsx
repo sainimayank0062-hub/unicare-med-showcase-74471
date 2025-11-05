@@ -62,7 +62,7 @@ const Header = () => {
             <Button
               onClick={() =>
                 window.open(
-                  "https://wa.me/919999999999?text=Hello, I want to inquire about Modular OT setup",
+                  "https://wa.me/918586995235?text=Hello, I want to inquire about Modular OT setup",
                   "_blank"
                 )
               }
@@ -118,7 +118,7 @@ const Header = () => {
               <Button
                 onClick={() =>
                   window.open(
-                    "https://wa.me/919999999999?text=Hello, I want to inquire about Modular OT setup",
+                    "https://wa.me/918586995235?text=Hello, I want to inquire about Modular OT setup",
                     "_blank"
                   )
                 }
