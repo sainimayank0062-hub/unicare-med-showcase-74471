@@ -14,7 +14,7 @@ const Contact = () => {
     requirements: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Basic validation
@@ -32,35 +32,39 @@ const Contact = () => {
       return;
     }
 
-    // Create WhatsApp message
-    const message = `New Enquiry from Unicare Medical Solutions Website:
-    
-Name: ${formData.name}
-Hospital/Clinic: ${formData.hospital || "Not specified"}
-City: ${formData.city}
-Phone: ${formData.phone}
-Requirements: ${formData.requirements}`;
+    try {
+      const form = e.currentTarget;
+      const formDataToSend = new FormData(form);
 
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/917678443838?text=${encodedMessage}`;
+      const response = await fetch("https://formsubmit.co/unicaremedical2023@gmail.com", {
+        method: "POST",
+        body: formDataToSend,
+      });
 
-    // Open WhatsApp
-    window.open(whatsappUrl, "_blank");
+      if (response.ok) {
+        toast({
+          title: "Success!",
+          description: "Your enquiry has been submitted successfully.",
+        });
 
-    // Show success message
-    toast({
-      title: "Redirecting to WhatsApp",
-      description: "Your enquiry will be sent via WhatsApp.",
-    });
-
-    // Reset form
-    setFormData({
-      name: "",
-      hospital: "",
-      city: "",
-      phone: "",
-      requirements: "",
-    });
+        // Reset form
+        setFormData({
+          name: "",
+          hospital: "",
+          city: "",
+          phone: "",
+          requirements: "",
+        });
+      } else {
+        throw new Error("Form submission failed");
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to submit enquiry. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -84,6 +88,7 @@ Requirements: ${formData.requirements}`;
                 </label>
                 <Input
                   type="text"
+                  name="name"
                   value={formData.name}
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
@@ -99,6 +104,7 @@ Requirements: ${formData.requirements}`;
                 </label>
                 <Input
                   type="text"
+                  name="hospital"
                   value={formData.hospital}
                   onChange={(e) =>
                     setFormData({ ...formData, hospital: e.target.value })
@@ -113,6 +119,7 @@ Requirements: ${formData.requirements}`;
                 </label>
                 <Input
                   type="text"
+                  name="city"
                   value={formData.city}
                   onChange={(e) =>
                     setFormData({ ...formData, city: e.target.value })
@@ -128,6 +135,7 @@ Requirements: ${formData.requirements}`;
                 </label>
                 <Input
                   type="tel"
+                  name="phone"
                   value={formData.phone}
                   onChange={(e) =>
                     setFormData({ ...formData, phone: e.target.value })
@@ -142,6 +150,7 @@ Requirements: ${formData.requirements}`;
                   Requirement Details *
                 </label>
                 <Textarea
+                  name="requirements"
                   value={formData.requirements}
                   onChange={(e) =>
                     setFormData({ ...formData, requirements: e.target.value })

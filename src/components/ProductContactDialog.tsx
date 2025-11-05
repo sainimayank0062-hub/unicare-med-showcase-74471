@@ -32,7 +32,7 @@ const ProductContactDialog = ({ open, onOpenChange, productName }: ProductContac
 
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Validate form data
@@ -57,37 +57,47 @@ const ProductContactDialog = ({ open, onOpenChange, productName }: ProductContac
       }
     }
 
-    // Create WhatsApp message
-    const message = `Product Enquiry: ${productName}
+    try {
+      // Create form data for submission
+      const submitData = new FormData();
+      submitData.append("Product", productName);
+      submitData.append("name", formData.name);
+      submitData.append("hospital", formData.hospital || "Not specified");
+      submitData.append("city", formData.city);
+      submitData.append("phone", formData.phone);
+      submitData.append("requirements", formData.requirements);
 
-Name: ${formData.name}
-Hospital/Clinic: ${formData.hospital || "Not specified"}
-City: ${formData.city}
-Phone: ${formData.phone}
-Requirements: ${formData.requirements}`;
+      const response = await fetch("https://formsubmit.co/unicaremedical2023@gmail.com", {
+        method: "POST",
+        body: submitData,
+      });
 
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/917678443838?text=${encodedMessage}`;
+      if (response.ok) {
+        toast({
+          title: "Success!",
+          description: "Your enquiry has been submitted successfully.",
+        });
 
-    // Open WhatsApp
-    window.open(whatsappUrl, "_blank");
-
-    // Show success message
-    toast({
-      title: "Redirecting to WhatsApp",
-      description: "You will be connected with Ravinder sir directly.",
-    });
-
-    // Reset form and close dialog
-    setFormData({
-      name: "",
-      hospital: "",
-      city: "",
-      phone: "",
-      requirements: "",
-    });
-    setErrors({});
-    onOpenChange(false);
+        // Reset form and close dialog
+        setFormData({
+          name: "",
+          hospital: "",
+          city: "",
+          phone: "",
+          requirements: "",
+        });
+        setErrors({});
+        onOpenChange(false);
+      } else {
+        throw new Error("Form submission failed");
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to submit enquiry. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -103,12 +113,15 @@ Requirements: ${formData.requirements}`;
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+          <input type="hidden" name="Product" value={productName} />
+          
           <div>
             <label className="block text-sm font-medium text-foreground mb-2">
               Full Name *
             </label>
             <Input
               type="text"
+              name="name"
               value={formData.name}
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
@@ -127,6 +140,7 @@ Requirements: ${formData.requirements}`;
             </label>
             <Input
               type="text"
+              name="hospital"
               value={formData.hospital}
               onChange={(e) =>
                 setFormData({ ...formData, hospital: e.target.value })
@@ -145,6 +159,7 @@ Requirements: ${formData.requirements}`;
             </label>
             <Input
               type="text"
+              name="city"
               value={formData.city}
               onChange={(e) =>
                 setFormData({ ...formData, city: e.target.value })
@@ -163,6 +178,7 @@ Requirements: ${formData.requirements}`;
             </label>
             <Input
               type="tel"
+              name="phone"
               value={formData.phone}
               onChange={(e) =>
                 setFormData({ ...formData, phone: e.target.value })
@@ -180,6 +196,7 @@ Requirements: ${formData.requirements}`;
               Requirement Details *
             </label>
             <Textarea
+              name="requirements"
               value={formData.requirements}
               onChange={(e) =>
                 setFormData({ ...formData, requirements: e.target.value })
@@ -198,7 +215,7 @@ Requirements: ${formData.requirements}`;
             size="lg"
             className="w-full bg-gradient-primary hover:opacity-90 transition-opacity"
           >
-            Connect with Ravinder Sir
+            Submit Enquiry
           </Button>
         </form>
       </DialogContent>

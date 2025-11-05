@@ -4,13 +4,15 @@ import { Button } from "@/components/ui/button";
 import ProductContactDialog from "@/components/ProductContactDialog";
 import glassOtImage from "@/assets/product-glass-ot.jpg";
 import steelOtImage from "@/assets/product-steel-ot.jpg";
-import icuImage from "@/assets/product-icu.jpg";
-import bedHeadImage from "@/assets/product-bed-head.jpg";
+import icuImage from "@/assets/product-icu-new.png";
+import bedHeadImage from "@/assets/product-bed-head-new.png";
 import ppgiOtImage from "@/assets/product-ppgi-ot.jpg";
 import jointlessOtImage from "@/assets/product-jointless-ot.jpg";
 import modularOtImage from "@/assets/product-modular-ot.jpg";
 import semiModularOtImage from "@/assets/product-semi-modular-ot.jpg";
 import manifoldGasImage from "@/assets/product-manifold-gas.jpg";
+import curtainTrackImage from "@/assets/product-curtain-track.webp";
+import scrubSinkImage from "@/assets/product-scrub-sink.png";
 
 const products = [
   {
@@ -85,14 +87,14 @@ const products = [
     description:
       "Sensor-based stainless steel scrub station for surgeon sterilization.",
     price: "XX,XXX",
-    image: steelOtImage,
+    image: scrubSinkImage,
   },
   {
     name: "Cubical Curtain Track System",
     description:
       "Hospital-grade smooth track curtains providing patient privacy.",
     price: "XX,XXX",
-    image: icuImage,
+    image: curtainTrackImage,
   },
 ];
 
@@ -165,9 +167,9 @@ const Products = () => {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
           <button
-            onClick={() =>
+          onClick={() =>
               window.open(
-                "https://wa.me/917678443838?text=Hello, I want to get the best quote for Modular OT setup",
+                "https://wa.me/918586995235?text=Hello, I want to get the best quote for Modular OT setup",
                 "_blank"
               )
             }

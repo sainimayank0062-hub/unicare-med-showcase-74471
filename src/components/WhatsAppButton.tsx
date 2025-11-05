@@ -3,7 +3,7 @@ import { MessageCircle } from "lucide-react";
 const WhatsAppButton = () => {
   const handleClick = () => {
     window.open(
-      "https://wa.me/917678443838?text=Hello, I want to get the best quote for Modular OT setup",
+      "https://wa.me/918586995235?text=Hello, I want to get the best quote for Modular OT setup",
       "_blank"
     );
   };
