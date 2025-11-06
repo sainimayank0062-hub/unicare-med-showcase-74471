@@ -14,6 +14,7 @@ import semiModularOtImage from "@/assets/product-semi-modular-ot.jpg";
 import manifoldGasImage from "@/assets/product-manifold-gas-new.webp";
 import curtainTrackImage from "@/assets/product-curtain-track.webp";
 import scrubSinkImage from "@/assets/product-scrub-sink.png";
+import agssImage from "@/assets/product-agss.webp";
 
 const products = [
   {
@@ -96,6 +97,13 @@ const products = [
       "Hospital-grade smooth track curtains providing patient privacy.",
     price: "XX,XXX",
     image: curtainTrackImage,
+  },
+  {
+    name: "Anesthetic Gas Scavenging System (AGSS)",
+    description:
+      "Safe removal and disposal of waste anesthetic gases for OT safety.",
+    price: "XX,XXX",
+    image: agssImage,
   },
 ];
 
