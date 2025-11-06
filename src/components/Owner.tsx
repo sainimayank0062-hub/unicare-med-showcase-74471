@@ -1,4 +1,4 @@
-import ownerPhoto from "@/assets/owner-photo.jpg";
+import ownerPhoto from "@/assets/owner-photo-new.png";
 
 const Owner = () => {
   return (
