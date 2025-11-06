@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import ProductContactDialog from "@/components/ProductContactDialog";
 import glassOtImage from "@/assets/product-glass-ot.jpg";
 import steelOtImage from "@/assets/product-steel-ot.jpg";
+import hplOtImage from "@/assets/product-hpl-ot.jpg";
 import icuImage from "@/assets/product-icu-new.png";
 import bedHeadImage from "@/assets/product-bed-head-new.png";
 import ppgiOtImage from "@/assets/product-ppgi-ot.jpg";
@@ -27,7 +28,7 @@ const products = [
     description:
       "Antibacterial HPL panels with durability, hygiene & scratch resistance.",
     price: "XX,XXX",
-    image: steelOtImage,
+    image: hplOtImage,
   },
   {
     name: "PPGI Modular Operation Theater",
