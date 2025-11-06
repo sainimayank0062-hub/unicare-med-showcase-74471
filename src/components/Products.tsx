@@ -11,7 +11,7 @@ import ppgiOtImage from "@/assets/product-ppgi-ot.jpg";
 import jointlessOtImage from "@/assets/product-jointless-ot.jpg";
 import modularOtImage from "@/assets/product-glass-modular-ot.jpg";
 import semiModularOtImage from "@/assets/product-semi-modular-ot.jpg";
-import manifoldGasImage from "@/assets/product-manifold-gas.jpg";
+import manifoldGasImage from "@/assets/product-manifold-gas-new.webp";
 import curtainTrackImage from "@/assets/product-curtain-track.webp";
 import scrubSinkImage from "@/assets/product-scrub-sink.png";
 
